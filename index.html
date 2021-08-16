@@ -15,7 +15,7 @@
 
     <script type="text/paperscript" canvas="myCanvas">
 
-       var keyData ={
+       var keyData = {
            j:{
                sound: new Howl({
                    src: ["Sounds/bubbles.mp3"]
@@ -60,6 +60,16 @@
                 sound: new Howl({
                     src: ["Sounds/dotted-spiral.mp3"]
                 })
+            },
+            v: {
+                sound: new Howl({
+                    src: ["Sounds/dotted-spiral.mp3"]
+                })
+            },
+            shift: {
+                sound: new Howl({
+                    src: ["Sounds/moon.mp3"]
+                })
             }
        }
 
@@ -83,7 +93,7 @@
 
       
         function onKeyDown(event){
-           
+            if(!keyData[event.key]) return
            
             var maxPoint = new Point(view.size.width, view.size.height);
             var randomPoint = Point.random();
@@ -94,6 +104,7 @@
             if(event.key === "shift"){
                 newCircle.fillColor = "white"
             }else if (event.key === "v"){
+                keyData[event.key].sound.play()
                 newCircle.fillColor = "black"
                 newCircle.strokeWidth = 30;
                 newCircle.strokeColor = randomizeColor()
